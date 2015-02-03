@@ -12,42 +12,165 @@ namespace FloKWS
     [ServiceContract]
     public interface IService1
     {
-
+        // ici on met seulement la signature des fonctions
         [OperationContract]
-        List<Business> GetBusinesses();
+        List<Station> GetAllStations();
 
-        [OperationContract]
-        int ReturnResultAddition(int first, int second);
+        //[OperationContract]
+        //int ReturnResultAddition(int first, int second);
     }
 
-    
+    // et on défini les classes
+    #region station
+
     [DataContract]
-    public class Business
+    public class Station
     {
-        //You can add any fields you would like to include
-        bool isOpen = true;
-        string name;
-        string logoUri;
-
-        [DataMember]
-        public string Name
+        //contructeurs
+        public Station()
         {
-            get { return name; }
-            set { name = value; }
-        }
 
-        [DataMember] 
-        public string LogoUri
-        {
-            get { return logoUri; }
-            set { logoUri = value; }
         }
 
         [DataMember]
-        public bool IsOpen
-        {
-            get { return isOpen; }
-            set { isOpen = value; }
-        }
+        int id_station { get; set; }
+        [DataMember]
+        int height_station{ get; set; }
+        [DataMember]
+        int km_size_station{ get; set; }
+        
+        // name + location
+        [DataMember]
+        string name_station{ get; set; }
+        [DataMember]
+        string gps_station{ get; set; }
+
+        //adresse
+        [DataMember]
+        int address_number_station{ get; set; }
+        [DataMember]
+        string address_street_station{ get; set; }
+        [DataMember]
+        int address_cp_station{ get; set; }
+        [DataMember]
+        string addresse_city_station{ get; set; }
     }
+
+    #endregion
+
+    #region user
+    [DataContract]
+    public class User
+    {
+        [DataMember]
+        int id_user { get; set; }
+        [DataMember]
+        int id_language_language { get; set; }
+
+        [DataMember]
+        string email_user { get; set; }
+        [DataMember]
+        string login_user { get; set; }
+        [DataMember]
+        string password_user { get; set; }
+        [DataMember]
+        string last_gps_user { get; set; }
+        [DataMember]
+        string last_city_user{ get; set; }
+    }
+
+    #endregion
+
+    #region alarms
+    [DataContract]
+    public class Alarm
+    {
+        [DataMember]
+        int id_alarm { get; set; }
+        [DataMember]
+        int id_user_user { get; set; }
+
+        [DataMember]
+        int snow_quality_alarm { get; set; }
+        [DataMember]
+        int snow_quantity_alarm{ get; set; }
+        [DataMember]
+        int wind_alarm { get; set; }
+        [DataMember]
+        int weather_alarm{ get; set; }
+        [DataMember]
+        string gps_alarm { get; set; }
+        [DataMember]
+        int range_alarm { get; set; }
+        [DataMember]
+        string status_alarm { get; set; }
+        [DataMember]
+        int hour_alarm { get; set; }
+        [DataMember]
+        int minute_alarm { get; set; }
+        
+    }
+
+    #endregion
+
+    #region Information
+    [DataContract]
+    public class Information
+    {
+        [DataMember]
+        int id_information { get; set; }
+        [DataMember]
+        int id_user_user { get; set; }
+        [DataMember]
+        int id_station_station { get; set; }
+
+        [DataMember]
+        int snow_quality_info { get; set; }
+        [DataMember]
+        int snow_quantity_info { get; set; }
+        [DataMember]
+        int wind_info { get; set; }
+        [DataMember]
+        int weather_info { get; set; }
+        [DataMember]
+        string gps_info { get; set; }
+    }
+
+    #endregion
+
+    #region Language
+    [DataContract]
+    public class Language
+    {
+        [DataMember]
+        int id_language { get; set; }
+        [DataMember]
+        string name_language { get; set; }
+    }
+
+    #endregion
+
+    #region Region
+    [DataContract]
+    public class Region
+    {
+        [DataMember]
+        int id_region { get; set; }
+        [DataMember]
+        int id_country_country { get; set; }
+        [DataMember]
+        string name_region { get; set; }
+    }
+    #endregion
+
+    #region Country
+    [DataContract]
+    public class Country
+    {
+        [DataMember]
+        int id_country { get; set; }
+        [DataMember]
+        string name_country { get; set; }
+    }
+    #endregion
 }

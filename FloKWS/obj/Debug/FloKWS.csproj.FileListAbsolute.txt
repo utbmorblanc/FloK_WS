@@ -1,6 +1,5 @@
 c:\users\chris\documents\visual studio 2013\Projects\FloKWS\FloKWS\bin\FloKWS.dll.config
 c:\users\chris\documents\visual studio 2013\Projects\FloKWS\FloKWS\bin\FloKWS.dll
 c:\users\chris\documents\visual studio 2013\Projects\FloKWS\FloKWS\bin\FloKWS.pdb
-c:\users\chris\documents\visual studio 2013\Projects\FloKWS\FloKWS\obj\Debug\FloKWS.csprojResolveAssemblyReference.cache
 c:\users\chris\documents\visual studio 2013\Projects\FloKWS\FloKWS\obj\Debug\FloKWS.dll
 c:\users\chris\documents\visual studio 2013\Projects\FloKWS\FloKWS\obj\Debug\FloKWS.pdb
