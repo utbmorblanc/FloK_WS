@@ -120,6 +120,8 @@ namespace FloKWS
             return returnValue;
         }
 
+
+
         // function that updates db informations
         public static Boolean update_table(MySqlConnection myConnection, string table, string column, string value, string where)
         {
@@ -158,6 +160,42 @@ namespace FloKWS
             return returnValue;
         }
 
+
+        // return one value from db
+        public static ResultSelectOneValue selectOneValue(MySqlConnection myConnection, string query)
+        {
+            string firstResult = string.Empty;
+            myConnection.Open();
+
+            try
+            {
+                MySqlCommand cmd = myConnection.CreateCommand();
+                cmd.CommandText = query;
+                cmd.CommandTimeout = 600;
+                MySqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    object oVal = reader.GetValue(0);
+                    firstResult = DBNull.Value.Equals(oVal) ? String.Empty : oVal.ToString();
+                }
+                reader.Close();
+                ResultSelectOneValue ret = new ResultSelectOneValue(firstResult, false);
+                return ret;
+            }
+
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message + " Query:" + query);
+                ResultSelectOneValue ret = new ResultSelectOneValue(ex.Message.ToString(), true);
+                return ret;
+
+            }
+            finally
+            {
+                myConnection.Close();
+            }
+
+        }
 
 
     }

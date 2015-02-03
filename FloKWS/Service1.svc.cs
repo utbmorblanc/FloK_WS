@@ -6,6 +6,7 @@ using System.ServiceModel;
 using System.ServiceModel.Web;
 using System.Text;
 using MySql.Data;
+using MySql.Data.MySqlClient;
 
 namespace FloKWS
 {
@@ -19,6 +20,26 @@ namespace FloKWS
             return Stations;
         }
 
+        public bool isUserInDB(string login, string password)
+        {
+            StringBuilder myString = new StringBuilder();
+            myString.Append("SELECT id_user FROM orblanc.user where login_user=");
+            myString.Append("'"+login+"'");
+            myString.Append(" and password_user=");
+            myString.Append("'" + password + "';");
+
+            MySqlConnection myconnexion = Global.InitMySqlConnection(Global.DBLogin, Global.DBPassword, Global.DBHost, Global.DBName, Global.Port, false);
+            ResultSelectOneValue result = Global.selectOneValue(myconnexion,myString.ToString());
+
+            if (String.IsNullOrEmpty(result.result))
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
 
     }
 }

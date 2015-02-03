@@ -16,8 +16,8 @@ namespace FloKWS
         [OperationContract]
         List<Station> GetAllStations();
 
-        //[OperationContract]
-        //int ReturnResultAddition(int first, int second);
+        [OperationContract]
+        bool isUserInDB(string login, string password);
     }
 
     // et on défini les classes

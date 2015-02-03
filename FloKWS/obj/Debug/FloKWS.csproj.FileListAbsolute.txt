@@ -3,3 +3,4 @@ c:\users\chris\documents\visual studio 2013\Projects\FloKWS\FloKWS\bin\FloKWS.dl
 c:\users\chris\documents\visual studio 2013\Projects\FloKWS\FloKWS\bin\FloKWS.pdb
 c:\users\chris\documents\visual studio 2013\Projects\FloKWS\FloKWS\obj\Debug\FloKWS.dll
 c:\users\chris\documents\visual studio 2013\Projects\FloKWS\FloKWS\obj\Debug\FloKWS.pdb
+C:\Users\chris\Documents\Visual Studio 2013\Projects\FloKWS\FloKWS\obj\Debug\FloKWS.csprojResolveAssemblyReference.cache
