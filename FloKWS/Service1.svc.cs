@@ -5,6 +5,11 @@ using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.ServiceModel.Web;
 using System.Text;
+using MySql.Data.MySqlClient;
+using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Diagnostics;
 
 namespace FloKWS
 {
@@ -13,7 +18,7 @@ namespace FloKWS
     public class Service1 : IService1
     {
 
-
+        MySqlConnection cnx
 
 
         //public string GetData(int value)

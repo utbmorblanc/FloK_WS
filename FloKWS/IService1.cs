@@ -20,7 +20,7 @@ namespace FloKWS
         int ReturnResultAddition(int first, int second);
     }
 
-
+    
     [DataContract]
     public class Business
     {
