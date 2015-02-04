@@ -63,11 +63,24 @@ namespace FloKWS
             MySqlConnection myconnexion = Global.InitMySqlConnection(Global.DBLogin, Global.DBPassword, Global.DBHost, Global.DBName, Global.Port, false);
             MySqlDataReader reader = Global.selectDataReader(myconnexion, myString.ToString());
 
-        //    while (reader.Read())
-        //    {
-        //        object oVal = reader. .GetValue(0);
-        //        firstResult = DBNull.Value.Equals(oVal) ? String.Empty : oVal.ToString();
-        //    }
+            while (reader.Read())
+            {
+                int i = 0;
+                int id_station          =  reader.GetInt32(i++);                
+                int height_station      =  reader.GetInt32(i++);      
+                int km_size_station     =  reader.GetInt32(i++);    
+                string name_station     =  reader.GetString(i++);
+                double longitude_station        =  reader.GetDouble(i++);
+                double latitude_station         =  reader.GetDouble(i++);
+                int address_number_station      =  reader.GetInt32(i++);
+                string address_street_station   =  reader.GetString(i++);
+                int address_cp_station          =  reader.GetInt32(i++);
+                string addresse_city_station    =  reader.GetString(i++);
+
+                Station station = new Station( id_station, height_station, km_size_station, name_station, longitude_station, latitude_station, address_number_station,address_street_station,  address_cp_station, addresse_city_station);
+
+                
+            }
 
             return Stations;
         }

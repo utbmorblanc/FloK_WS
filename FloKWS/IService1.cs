@@ -21,6 +21,9 @@ namespace FloKWS
         List<Station> GetAllStations();
 
         [OperationContract]
+        int GetDistance(double myLatitude, double myLongitude,double stationLatitude, double stationLongitude);
+
+        [OperationContract]
         bool isLoginInDB(string login);
 
 
@@ -43,6 +46,21 @@ namespace FloKWS
 
         }
 
+        public Station( int id_station,                 int height_station,         int km_size_station,        string name_station,
+                        double longitude_station,       double latitude_station,    int address_number_station,
+                        string address_street_station,  int address_cp_station,     string addresse_city_station)
+        {
+            this.id_station = id_station;
+            this.height_station = height_station;
+            this.km_size_station = km_size_station;
+            this.name_station = name_station;
+            this.longitude_station = longitude_station;
+            this.latitude_station = latitude_station;
+            this.address_number_station = address_number_station;
+            this.address_street_station = address_street_station;
+            this.address_cp_station = address_cp_station;
+            this.addresse_city_station = addresse_city_station;
+        }
 
 
         [DataMember]
