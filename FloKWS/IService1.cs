@@ -13,15 +13,22 @@ namespace FloKWS
     public interface IService1
     {
         // ici on met seulement la signature des fonctions
+
+        [OperationContract]
+        List<Station> GetNearestStations(double myLatitude, double myLongitude, float km);
+
         [OperationContract]
         List<Station> GetAllStations();
 
-
         [OperationContract]
-        List<Station> GetNearestStations();
+        bool isLoginInDB(string login);
+
 
         [OperationContract]
         bool isUserInDB(string login, string password);
+
+        [OperationContract]
+        bool CreateUser(string login, string mail, string pwd);
     }
 
     // et on défini les classes
