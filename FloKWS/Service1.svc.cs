@@ -63,11 +63,11 @@ namespace FloKWS
             MySqlConnection myconnexion = Global.InitMySqlConnection(Global.DBLogin, Global.DBPassword, Global.DBHost, Global.DBName, Global.Port, false);
             MySqlDataReader reader = Global.selectDataReader(myconnexion, myString.ToString());
 
-            while (reader.Read())
-            {
-                object oVal = reader. .GetValue(0);
-                firstResult = DBNull.Value.Equals(oVal) ? String.Empty : oVal.ToString();
-            }
+        //    while (reader.Read())
+        //    {
+        //        object oVal = reader. .GetValue(0);
+        //        firstResult = DBNull.Value.Equals(oVal) ? String.Empty : oVal.ToString();
+        //    }
 
             return Stations;
         }
