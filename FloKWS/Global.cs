@@ -15,6 +15,52 @@ namespace FloKWS
         public static string DBName = "orblanc";
         public static string Port = "8181";
 
+        #region Dates
+        //FONTIONS DATE
+
+        public static string DateTimeToMySqlDate(DateTime date)
+        {
+            return "DATE('" + date.ToString("yyyy-MM-dd") + "')";
+            //return date.ToString("yyyy-MM-dd") ;
+        }
+
+        public static string DateTimeToMySqlDateTime(DateTime date)
+        {
+            return "STR_TO_DATE('" + date.ToString("yyyy-MM-dd hh:mm:ss") + "','%Y-%m-%d %H:%i:%s')";
+        }
+
+        public static DateTime MySqlDateTimeToDateTime(string date)
+        {
+            // année, mois, jour => xxxx xx xx                    
+            DateTime dt = new DateTime(int.Parse(date.Substring(0, 4)), int.Parse(date.Substring(5, 2)), int.Parse(date.Substring(8, 2)));
+            return dt;
+        }
+
+        #endregion
+        #region Position
+
+        /// <summary>
+        /// retourne le degrée de longitude nécessaire pour couvrir une distance de n km donnée pour une latitude donnée
+        /// </summary>
+        /// <param name="km"></param>
+        /// <param name="latitude"></param>
+        /// <returns></returns>
+        public static double KmToLongitude(float km,double latitude){
+            return (km / (111.320 * Math.Cos(latitude))); 
+        }
+
+        /// <summary>
+        /// retourne le degrée de latitude nécessaire pour couvrir une distance de n km donnée
+        /// </summary>
+        /// <param name="km"></param>
+        /// <returns></returns>
+        public static double KmToLatitude(float km)
+        {
+            return (km / 111.132);
+        }
+
+        #endregion
+        #region BD
         public static MySqlConnection InitMySqlConnection(string login, string password, string host, string db,string port, bool pooling)
         {
             MySqlConnection myConnection = null;
@@ -160,6 +206,30 @@ namespace FloKWS
             return returnValue;
         }
 
+        public static MySqlDataReader selectDataReader(MySqlConnection myConnection, string query)
+        {
+            myConnection.Open();
+
+            try
+            {
+                MySqlCommand cmd = myConnection.CreateCommand();
+                cmd.CommandText = query;
+                cmd.CommandTimeout = 600;
+                MySqlDataReader reader = cmd.ExecuteReader();
+                return reader;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message + " Query:" + query);
+                return null;
+
+            }
+             finally
+            {
+                myConnection.Close();
+            }
+        }
+
 
         // return one value from db
         public static ResultSelectOneValue selectOneValue(MySqlConnection myConnection, string query)
@@ -196,7 +266,7 @@ namespace FloKWS
             }
 
         }
-
+        #endregion
 
     }
 }
