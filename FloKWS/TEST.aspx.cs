@@ -19,14 +19,20 @@ namespace FloKWS
 
         protected void Button1_Click(object sender, EventArgs e)
         {
-            MySqlConnection myconnexion = Global.InitMySqlConnection(Global.DBLogin, Global.DBPassword, Global.DBHost, Global.DBName,Global.Port, false);
-            List<string> myList= new List<string>();
-            myList.Add("name_language");
-            List<string> myListValues= new List<string>();
-            myListValues.Add("Anglais");
+            MySqlConnection myconnexion = Global.InitMySqlConnection(Global.DBLogin, Global.DBPassword, Global.DBHost, Global.DBName, Global.Port, false);
+            List<string> listColumns = new List<String>();
+            List<string> listValue = new List<String>();
 
-            bool result=Global.insert_into_db(myconnexion, "language", myList, myListValues);
-            Console.WriteLine(result.ToString());
+            listColumns.Add("login_user");
+            listValue.Add("login");
+
+            listColumns.Add("password_user");
+            listValue.Add("unpassw");
+
+            listColumns.Add("email_user");
+            listValue.Add("plop@abnaha.de");
+
+            Global.insert_into_db(myconnexion, "user", listColumns, listValue);
 
         }
     }

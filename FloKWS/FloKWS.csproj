@@ -66,6 +66,18 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Service References\ServiceRoutage\configuration91.svcinfo" />
+    <None Include="Service References\ServiceRoutage\configuration.svcinfo" />
+    <Content Include="Service References\ServiceRoutage\FloKWS.ServiceRoutage.MajorRoutesResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\ServiceRoutage\FloKWS.ServiceRoutage.RouteResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <None Include="Service References\ServiceRoutage\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
     <Content Include="Service1.svc" />
     <Content Include="TEST.aspx" />
     <Content Include="Web.config" />
@@ -73,6 +85,11 @@
   <ItemGroup>
     <Compile Include="Global.cs" />
     <Compile Include="ResultSelectOneValue.cs" />
+    <Compile Include="Service References\ServiceRoutage\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="Service1.svc.cs">
       <DependentUpon>Service1.svc</DependentUpon>
     </Compile>
@@ -90,12 +107,32 @@
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Service References\ServiceRoutage\RouteService.wsdl" />
+    <None Include="Service References\ServiceRoutage\routeservice.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ServiceRoutage\routeservice1.wsdl" />
+    <None Include="Service References\ServiceRoutage\routeservice1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ServiceRoutage\routeservice2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ServiceRoutage\routeservice3.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
     <None Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\ServiceRoutage\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

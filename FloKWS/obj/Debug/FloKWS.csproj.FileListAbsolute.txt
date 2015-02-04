@@ -9,3 +9,4 @@ C:\Users\val\Documents\FloK_WS\FloKWS\bin\FloKWS.dll
 C:\Users\val\Documents\FloK_WS\FloKWS\bin\FloKWS.pdb
 C:\Users\val\Documents\FloK_WS\FloKWS\obj\Debug\FloKWS.dll
 C:\Users\val\Documents\FloK_WS\FloKWS\obj\Debug\FloKWS.pdb
+C:\Users\val\Documents\FloK_WS\FloKWS\obj\Debug\FloKWS.csprojResolveAssemblyReference.cache

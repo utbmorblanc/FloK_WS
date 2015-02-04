@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
+
 namespace FloKWS
 {
     public class Global
@@ -135,6 +136,7 @@ namespace FloKWS
                 foreach (string value in listValue)
                 {
                     Query.Append("@attribute" + i + ",");
+                    i++;
                 }
                 Query.Length--;  //j'enleve la derniere virgule
                 Query.Append(")");

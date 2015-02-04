@@ -44,8 +44,8 @@ namespace FloKWS
             //***************   SQL PART    **************/
             StringBuilder myString = new StringBuilder();
 
-            // TOTEST 
-            myString.Append("SELECT   ");
+            
+            myString.Append("SELECT  distinct ");
             myString.Append(" id_station, height_station, km_size_station, name_station, address_number_station, address_street_station, address_cp_station, address_city_station, id_region_region, longitude_station,latitude_station ");
             myString.Append(" FROM orblanc.station stat");
             myString.Append(" inner join orblanc.information info ");
@@ -79,6 +79,7 @@ namespace FloKWS
 
                 Station station = new Station( id_station, height_station, km_size_station, name_station, longitude_station, latitude_station, address_number_station,address_street_station,  address_cp_station, addresse_city_station);
 
+                Stations.Add(station);
                 
             }
 
@@ -89,6 +90,12 @@ namespace FloKWS
         {
             List<Station> Stations = new List<Station>();
             return Stations;
+        }
+
+        public int GetDistance(double myLatitude, double myLongitude, double stationLatitude, double stationLongitude)
+        {
+
+            return 0;
         }
 
         /// <summary>
@@ -138,7 +145,7 @@ namespace FloKWS
         }
 
 
-        public bool CreateUser(string login, string mail, string pwd)
+        public  bool CreateUser(string login, string mail, string pwd)
         {
             MySqlConnection myconnexion = Global.InitMySqlConnection(Global.DBLogin, Global.DBPassword, Global.DBHost, Global.DBName, Global.Port, false);
             List<string> listColumns = new List<String>();
