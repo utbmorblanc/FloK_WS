@@ -16,6 +16,10 @@ namespace FloKWS
         [OperationContract]
         List<Station> GetAllStations();
 
+
+        [OperationContract]
+        List<Station> GetNearestStations();
+
         [OperationContract]
         bool isUserInDB(string login, string password);
     }
@@ -32,9 +36,7 @@ namespace FloKWS
 
         }
 
-        public int returnO(string plop){
-            return 1;
-        }
+
 
         [DataMember]
         int id_station { get; set; }
@@ -47,7 +49,9 @@ namespace FloKWS
         [DataMember]
         string name_station{ get; set; }
         [DataMember]
-        string gps_station{ get; set; }
+        double longitude_station{ get; set; }
+        [DataMember]
+        double latitude_station { get; set; }
 
         //adresse
         [DataMember]
@@ -58,8 +62,6 @@ namespace FloKWS
         int address_cp_station{ get; set; }
         [DataMember]
         string addresse_city_station{ get; set; }
-
-       
     }
 
     #endregion
@@ -80,7 +82,9 @@ namespace FloKWS
         [DataMember]
         string password_user { get; set; }
         [DataMember]
-        string last_gps_user { get; set; }
+        double last_longitude_user { get; set; }
+        [DataMember]
+        double last_latitude_user { get; set; }
         [DataMember]
         string last_city_user{ get; set; }
     }
@@ -105,7 +109,9 @@ namespace FloKWS
         [DataMember]
         int weather_alarm{ get; set; }
         [DataMember]
-        string gps_alarm { get; set; }
+        double longitude_alarm { get; set; }
+        [DataMember]
+        double latitude_alarm { get; set; }
         [DataMember]
         int range_alarm { get; set; }
         [DataMember]
@@ -139,7 +145,9 @@ namespace FloKWS
         [DataMember]
         int weather_info { get; set; }
         [DataMember]
-        string gps_info { get; set; }
+        double longitude_info { get; set; }
+        [DataMember]
+        double latitude_info { get; set; }
     }
 
     #endregion
