@@ -125,7 +125,7 @@ namespace FloKWS
         }
 
 
-        public bool CreateUser(String login, String mail, String pwd)
+        public bool CreateUser(string login, string mail, string pwd)
         {
             MySqlConnection myconnexion = Global.InitMySqlConnection(Global.DBLogin, Global.DBPassword, Global.DBHost, Global.DBName, Global.Port, false);
             List<string> listColumns = new List<String>();

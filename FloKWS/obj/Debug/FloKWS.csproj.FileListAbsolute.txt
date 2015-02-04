@@ -4,7 +4,6 @@ c:\users\chris\documents\visual studio 2013\Projects\FloKWS\FloKWS\bin\FloKWS.pd
 c:\users\chris\documents\visual studio 2013\Projects\FloKWS\FloKWS\obj\Debug\FloKWS.dll
 c:\users\chris\documents\visual studio 2013\Projects\FloKWS\FloKWS\obj\Debug\FloKWS.pdb
 C:\Users\chris\Documents\Visual Studio 2013\Projects\FloKWS\FloKWS\obj\Debug\FloKWS.csprojResolveAssemblyReference.cache
-C:\Users\val\Documents\FloK_WS\FloKWS\obj\Debug\FloKWS.csprojResolveAssemblyReference.cache
 C:\Users\val\Documents\FloK_WS\FloKWS\bin\FloKWS.dll.config
 C:\Users\val\Documents\FloK_WS\FloKWS\bin\FloKWS.dll
 C:\Users\val\Documents\FloK_WS\FloKWS\bin\FloKWS.pdb
