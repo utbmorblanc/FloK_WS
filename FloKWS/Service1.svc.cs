@@ -8,6 +8,8 @@ using System.Text;
 using System.Data;
 using MySql.Data;
 using MySql.Data.MySqlClient;
+using System.Security.Cryptography;
+using CryptoMD5Sample;
 //using Microsoft.Maps.MapControl.WPF;
 //using Microsoft.Maps.MapControl.WPF.Design;
 //using Microsoft.Maps;
@@ -50,7 +52,7 @@ namespace FloKWS
 
 
             myString.Append("SELECT  distinct ");
-            myString.Append(" info.date_info,id_station, height_station, km_size_station, name_station, address_number_station, address_street_station, address_cp_station, address_city_station, id_region_region, longitude_station,latitude_station ");
+            myString.Append(" info.date_info,id_station, height_station, km_size_station, name_station, address_number_station, address_street_station, address_cp_station, address_city_station, longitude_station,latitude_station ");
             myString.Append(" FROM orblanc.station stat");
             myString.Append(" inner join orblanc.information info ");
             myString.Append("   on stat.id_station = info.id_station_station ");
@@ -93,7 +95,7 @@ namespace FloKWS
 
 
 
-                    Station station = new Station(id_station, height_station, km_size_station, name_station, latitude_station, longitude_station, address_number_station, address_street_station, address_cp_station, addresse_city_station);
+                    Station station = new Station(id_station, height_station, km_size_station, name_station, longitude_station, latitude_station, address_number_station, address_street_station, address_cp_station, addresse_city_station);
                     Stations.Add(station);
 
                 }
@@ -148,24 +150,29 @@ namespace FloKWS
             }
         }
 
-        public bool isUserInDB(string login, string password)
-        {
-            StringBuilder myString = new StringBuilder();
-            myString.Append("SELECT id_user FROM orblanc.user where login_user=");
-            myString.Append("'"+login+"'");
-            myString.Append(" and password_user=");
-            myString.Append("'" + password + "';");
-
-            MySqlConnection myconnexion = Global.InitMySqlConnection(Global.DBLogin, Global.DBPassword, Global.DBHost, Global.DBName, Global.Port, false);
-            ResultSelectOneValue result = Global.selectOneValue(myconnexion,myString.ToString());
-
-            if (String.IsNullOrEmpty(result.result))
+        public bool isUserInDB(string login, string password){
+      
+            using (MD5 md5Hash = MD5.Create())
             {
-                return false;
-            }
-            else
-            {
-                return true;
+                string hash = CryptoMD5.GetMd5Hash(md5Hash, password);
+             
+                StringBuilder myString = new StringBuilder();
+                myString.Append("SELECT id_user FROM orblanc.user where login_user=");
+                myString.Append("'"+login+"'");
+                myString.Append(" and password_user=");
+                myString.Append("'" + hash + "';");
+
+                MySqlConnection myconnexion = Global.InitMySqlConnection(Global.DBLogin, Global.DBPassword, Global.DBHost, Global.DBName, Global.Port, false);
+                ResultSelectOneValue result = Global.selectOneValue(myconnexion,myString.ToString());
+
+                if (String.IsNullOrEmpty(result.result))
+                {
+                    return false;
+                }
+                else
+                {
+                    return true;
+                }
             }
         }
 
@@ -178,10 +185,11 @@ namespace FloKWS
           
             listColumns.Add("login_user");
             listValue.Add(login);
-
-            listColumns.Add("password_user");
-            listValue.Add(pwd);
-
+            using (MD5 md5Hash = MD5.Create())
+            {
+                listColumns.Add("password_user");
+                listValue.Add(CryptoMD5.GetMd5Hash(md5Hash,pwd));
+            }
             listColumns.Add("email_user");
             listValue.Add(mail);
 

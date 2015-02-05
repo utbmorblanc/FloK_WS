@@ -83,14 +83,16 @@ namespace FloKWS
         protected void Button1_Click(object sender, EventArgs e)
         {
 
-            float km = 200;
-            double latitude = 48.642938;
-            double longitude = 24.062307;
-            DateTime date = DateTime.Now;
-            string dateSQL = date.Year + "-" + date.Month + "-" + date.Day;
-            bool ok = this.CreateInfo(2, 3, 4, 2, 2, 1, dateSQL, longitude, latitude);
-
-
+            //float km = 200;
+            //double latitude = 48.642938;
+            //double longitude = 24.062307;
+            //DateTime date = DateTime.Now;
+            //string dateSQL = date.Year + "-" + date.Month + "-" + date.Day;
+            //bool ok = this.CreateInfo(2, 3, 4, 2, 2, 1, dateSQL, longitude, latitude);
+            Service1 serv = new Service1();
+            //serv.CreateUser("login", "mail@MailDefinition.com", "password");
+            bool tobefalse = serv.isUserInDB("login", "tobefalse");
+            bool tobetrue = serv.isUserInDB("login", "password");
 
         }
 

@@ -102,6 +102,8 @@ namespace FloKWS
     [DataContract]
     public class User
     {
+        public User() { }
+
         [DataMember]
         public int id_user { get; set; }
         [DataMember]
@@ -127,6 +129,8 @@ namespace FloKWS
     [DataContract]
     public class Alarm
     {
+        public Alarm() { }
+
         [DataMember]
         public int id_alarm { get; set; }
         [DataMember]
@@ -161,6 +165,8 @@ namespace FloKWS
     [DataContract]
     public class Information
     {
+        public Information(){ }
+
         [DataMember]
         public int id_information { get; set; }
         [DataMember]
@@ -188,6 +194,8 @@ namespace FloKWS
     [DataContract]
     public class Language
     {
+        public Language() { }
+
         [DataMember]
         public int id_language { get; set; }
         [DataMember]
@@ -200,6 +208,8 @@ namespace FloKWS
     [DataContract]
     public class Region
     {
+        public Region() { }
+
         [DataMember]
         public int id_region { get; set; }
         [DataMember]
@@ -213,6 +223,8 @@ namespace FloKWS
     [DataContract]
     public class Country
     {
+        public Country() { }
+
         [DataMember]
         public int id_country { get; set; }
         [DataMember]
