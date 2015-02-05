@@ -66,6 +66,17 @@ namespace FloKWS
         [DataMember]
         public int id_station { get; set; }
         [DataMember]
+<<<<<<< HEAD
+        int height_station { get; set; }
+        [DataMember]
+        int km_size_station { get; set; }
+        
+        // name + location
+        [DataMember]
+        string name_station { get; set; }
+        [DataMember]
+        double longitude_station { get; set; }
+=======
         public int height_station { get; set; }
         [DataMember]
         public int km_size_station { get; set; }
@@ -75,11 +86,21 @@ namespace FloKWS
         public string name_station { get; set; }
         [DataMember]
         public double longitude_station { get; set; }
+>>>>>>> 030a2c2dc37cc6aa5a39c6d0c42869e86aba28b4
         [DataMember]
         public double latitude_station { get; set; }
 
         //adresse
         [DataMember]
+<<<<<<< HEAD
+        int address_number_station { get; set; }
+        [DataMember]
+        string address_street_station { get; set; }
+        [DataMember]
+        int address_cp_station { get; set; }
+        [DataMember]
+        string addresse_city_station { get; set; }
+=======
         public int address_number_station { get; set; }
         [DataMember]
         public string address_street_station { get; set; }
@@ -87,6 +108,7 @@ namespace FloKWS
         public int address_cp_station { get; set; }
         [DataMember]
         public string addresse_city_station { get; set; }
+>>>>>>> 030a2c2dc37cc6aa5a39c6d0c42869e86aba28b4
     }
 
     #endregion
