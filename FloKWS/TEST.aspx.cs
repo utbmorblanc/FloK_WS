@@ -1,6 +1,7 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Web;
@@ -50,7 +51,7 @@ namespace FloKWS
 
         }
 
-        public List<Station> GetNearestStations(double myLatitude, double myLongitude, float km)
+        public  List<Station> GetNearestStations(double myLatitude, double myLongitude, float km)
         {
             List<Station> Stations = new List<Station>();
             double maxLat, minLat, maxLong, minLong;
@@ -59,7 +60,7 @@ namespace FloKWS
             double longitudeRadius = Global.KmToLongitude(km, myLatitude);
             double latitudeRadius = Global.KmToLatitude(km);
             DateTime date = DateTime.Now;
-            date.AddDays(-2);
+            date = date.AddDays(-2);
             String dateSQL = Global.DateTimeToMySqlDateTime(date);
 
             // interval des latitudes et longitude pour la recherche
@@ -73,7 +74,7 @@ namespace FloKWS
 
 
             myString.Append("SELECT  distinct ");
-            myString.Append(" info.date_info,id_station, height_station, km_size_station, name_station, address_number_station, address_street_station, address_cp_station, address_city_station, id_region_region, longitude_station,latitude_station ");
+            myString.Append(" id_station, info.date_info, height_station, km_size_station, name_station, address_number_station, address_street_station, address_cp_station, address_city_station, id_region_region, longitude_station,latitude_station ");
             myString.Append(" FROM orblanc.station stat");
             myString.Append(" inner join orblanc.information info ");
             myString.Append("   on stat.id_station = info.id_station_station ");
@@ -81,37 +82,60 @@ namespace FloKWS
             myString.Append("         stat.latitude_station <= ").Append(maxLat.ToString().Replace(",", "."));
             myString.Append("   and   stat.latitude_station >= ").Append(minLat.ToString().Replace(",", "."));
             myString.Append("   and   stat.longitude_station <= ").Append(maxLong.ToString().Replace(",", "."));
-            myString.Append("   and   stat.longitude_station >= ").Append(minLong.ToString().Replace(",","."));
+            myString.Append("   and   stat.longitude_station >= ").Append(minLong.ToString().Replace(",", "."));
             myString.Append(" HAVING ");
             myString.Append("         info.date_info >= ").Append(dateSQL);
             myString.Append(";");
 
-
-            MySqlConnection myconnexion = Global.InitMySqlConnection(Global.DBLogin, Global.DBPassword, Global.DBHost, Global.DBName, Global.Port, false);
-            MySqlDataReader reader = Global.selectDataReader(myconnexion, myString.ToString());
-
-         
-            while (reader.Read())
+            try
             {
-                int i = 0;
-                int id_station = reader.GetInt32(i++);
-                int height_station = reader.GetInt32(i++);
-                int km_size_station = reader.GetInt32(i++);
-                string name_station = reader.GetString(i++);
-                double longitude_station = reader.GetDouble(i++);
-                double latitude_station = reader.GetDouble(i++);
-                int address_number_station = reader.GetInt32(i++);
-                string address_street_station = reader.GetString(i++);
-                int address_cp_station = reader.GetInt32(i++);
-                string addresse_city_station = reader.GetString(i++);
+                MySqlConnection myconnexion = Global.InitMySqlConnection(Global.DBLogin, Global.DBPassword, Global.DBHost, Global.DBName, Global.Port, false);
+                DataTable schemaTable = Global.selectDataReader(myconnexion, myString.ToString());
 
-                Station station = new Station(id_station, height_station, km_size_station, name_station, longitude_station, latitude_station, address_number_station, address_street_station, address_cp_station, addresse_city_station);
+                foreach (DataRow row in schemaTable.Rows)
+                {
+                    
 
-                Stations.Add(station);
+                        try
+                        {
+                            int id_station = int.Parse(row["id_station"].ToString());
+                            int height_station = int.Parse(row["height_station"].ToString());
+                            int km_size_station = int.Parse(row["km_size_station"].ToString());
+                            string name_station = row["name_station"].ToString();
+                            double longitude_station = double.Parse(row["longitude_station"].ToString());
+                            double latitude_station = int.Parse(row["latitude_station"].ToString());
+                            int address_number_station = int.Parse(row["address_number_station"].ToString());
+                            string address_street_station = row["address_street_station"].ToString();
+                            int address_cp_station = int.Parse(row["address_cp_station"].ToString());
+                            string addresse_city_station = row["addresse_city_station"].ToString();
+                       
+                        
+
+                        Station station = new Station(id_station, height_station, km_size_station, name_station, longitude_station, latitude_station, address_number_station, address_street_station, address_cp_station, addresse_city_station);
+                        Stations.Add(station);
+                        
+                        }
+                        catch (Exception ex)
+                        {
+                            Console.WriteLine("Erreur de parsing");
+                        }
+                        
+ 
+                }
+
 
             }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message + " Query:" + myString);
+                return null;
 
-            return Stations;
+            }
+           
+                return Stations;
+            
+
         }
+        
     }
 }
