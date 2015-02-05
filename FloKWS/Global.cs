@@ -209,7 +209,7 @@ namespace FloKWS
             return returnValue;
         }
 
-        public static DataTable selectDataReader(MySqlConnection myConnection, string query)
+        public static List<List<string>> selectDataReader(MySqlConnection myConnection, string query)
         {
             myConnection.Open();
 
@@ -219,10 +219,26 @@ namespace FloKWS
                 cmd.CommandText = query;
                 cmd.CommandTimeout = 600;
                 MySqlDataReader reader = cmd.ExecuteReader();
+                List<List<string>> data = new List<List<string>>();
+                List<string> FieldDatas = new List<string>();
+                while(reader.Read()){
 
-                DataTable schemaTable = reader.GetSchemaTable();
-
-                return schemaTable;
+                    for (int i=0; i < reader.FieldCount; i++)
+                    {
+                        if (reader.IsDBNull(i))
+                        {
+                            FieldDatas.Add(null);
+                        }
+                        else
+                        {
+                            FieldDatas.Add(reader.GetString(i));
+                        }
+                    }
+                    data.Add(FieldDatas);
+                    FieldDatas = new List<string>();
+                }
+                
+                return data;
             }
             catch (Exception ex)
             {

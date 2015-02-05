@@ -51,7 +51,7 @@ namespace FloKWS
 
         }
 
-        public  List<Station> GetNearestStations(double myLatitude, double myLongitude, float km)
+        public List<Station> GetNearestStations(double myLatitude, double myLongitude, float km)
         {
             List<Station> Stations = new List<Station>();
             double maxLat, minLat, maxLong, minLong;
@@ -74,7 +74,7 @@ namespace FloKWS
 
 
             myString.Append("SELECT  distinct ");
-            myString.Append(" id_station, info.date_info, height_station, km_size_station, name_station, address_number_station, address_street_station, address_cp_station, address_city_station, id_region_region, longitude_station,latitude_station ");
+            myString.Append(" info.date_info,id_station, height_station, km_size_station, name_station, address_number_station, address_street_station, address_cp_station, address_city_station, id_region_region, longitude_station,latitude_station ");
             myString.Append(" FROM orblanc.station stat");
             myString.Append(" inner join orblanc.information info ");
             myString.Append("   on stat.id_station = info.id_station_station ");
@@ -90,39 +90,37 @@ namespace FloKWS
             try
             {
                 MySqlConnection myconnexion = Global.InitMySqlConnection(Global.DBLogin, Global.DBPassword, Global.DBHost, Global.DBName, Global.Port, false);
-                DataTable schemaTable = Global.selectDataReader(myconnexion, myString.ToString());
 
-                foreach (DataRow row in schemaTable.Rows)
+                List<List<string>> listDatas = Global.selectDataReader(myconnexion, myString.ToString());
+
+
+                foreach (List<string> data in listDatas)
                 {
-                    
 
-                        try
-                        {
-                            int id_station = int.Parse(row["id_station"].ToString());
-                            int height_station = int.Parse(row["height_station"].ToString());
-                            int km_size_station = int.Parse(row["km_size_station"].ToString());
-                            string name_station = row["name_station"].ToString();
-                            double longitude_station = double.Parse(row["longitude_station"].ToString());
-                            double latitude_station = int.Parse(row["latitude_station"].ToString());
-                            int address_number_station = int.Parse(row["address_number_station"].ToString());
-                            string address_street_station = row["address_street_station"].ToString();
-                            int address_cp_station = int.Parse(row["address_cp_station"].ToString());
-                            string addresse_city_station = row["addresse_city_station"].ToString();
-                       
-                        
+                    int i = 1;
 
-                        Station station = new Station(id_station, height_station, km_size_station, name_station, longitude_station, latitude_station, address_number_station, address_street_station, address_cp_station, addresse_city_station);
-                        Stations.Add(station);
-                        
-                        }
-                        catch (Exception ex)
-                        {
-                            Console.WriteLine("Erreur de parsing");
-                        }
-                        
- 
+                    int id_station = int.Parse(data[i++]);
+                    int height_station = int.Parse(string.IsNullOrEmpty(data[i]) ? "0" : data[i]); 
+                    i++;
+                    int km_size_station = int.Parse(string.IsNullOrEmpty(data[i]) ? "0" : data[i]);
+                    i++;
+                    string name_station = data[i++];
+                    int address_number_station = int.Parse(string.IsNullOrEmpty(data[i]) ? "0" : data[i]);
+                    i++;
+                    string address_street_station = data[i++];
+                    int address_cp_station = int.Parse(string.IsNullOrEmpty(data[i]) ? "0" : data[i]);
+                    i++;
+                    string addresse_city_station = data[i++];
+                    double longitude_station = Convert.ToDouble(string.IsNullOrEmpty(data[i]) ? "0" : data[i]);
+                    i++;
+                    double latitude_station = Convert.ToDouble(string.IsNullOrEmpty(data[i]) ? "0" : data[i]);
+                  
+
+
+                    Station station = new Station(id_station, height_station, km_size_station, name_station, longitude_station, latitude_station, address_number_station, address_street_station, address_cp_station, addresse_city_station);
+                    Stations.Add(station);
+
                 }
-
 
             }
             catch (Exception ex)
@@ -131,9 +129,9 @@ namespace FloKWS
                 return null;
 
             }
-           
-                return Stations;
-            
+
+            return Stations;
+
 
         }
         
