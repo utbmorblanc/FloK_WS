@@ -7,9 +7,9 @@ using System.ServiceModel.Web;
 using System.Text;
 using MySql.Data;
 using MySql.Data.MySqlClient;
-using Microsoft.Maps.MapControl.WPF;
-using Microsoft.Maps.MapControl.WPF.Design;
-using Microsoft.Maps;
+//using Microsoft.Maps.MapControl.WPF;
+//using Microsoft.Maps.MapControl.WPF.Design;
+//using Microsoft.Maps;
 
 namespace FloKWS
 {

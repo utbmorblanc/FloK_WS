@@ -66,27 +66,27 @@ namespace FloKWS
         [DataMember]
         int id_station { get; set; }
         [DataMember]
-        int height_station{ get; set; }
+        int height_station { get; set; }
         [DataMember]
-        int km_size_station{ get; set; }
+        int km_size_station { get; set; }
         
         // name + location
         [DataMember]
-        string name_station{ get; set; }
+        string name_station { get; set; }
         [DataMember]
-        double longitude_station{ get; set; }
+        double longitude_station { get; set; }
         [DataMember]
         double latitude_station { get; set; }
 
         //adresse
         [DataMember]
-        int address_number_station{ get; set; }
+        int address_number_station { get; set; }
         [DataMember]
-        string address_street_station{ get; set; }
+        string address_street_station { get; set; }
         [DataMember]
-        int address_cp_station{ get; set; }
+        int address_cp_station { get; set; }
         [DataMember]
-        string addresse_city_station{ get; set; }
+        string addresse_city_station { get; set; }
     }
 
     #endregion
