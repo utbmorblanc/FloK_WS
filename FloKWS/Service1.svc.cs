@@ -93,7 +93,7 @@ namespace FloKWS
 
 
 
-                    Station station = new Station(id_station, height_station, km_size_station, name_station, longitude_station, latitude_station, address_number_station, address_street_station, address_cp_station, addresse_city_station);
+                    Station station = new Station(id_station, height_station, km_size_station, name_station, latitude_station, longitude_station, address_number_station, address_street_station, address_cp_station, addresse_city_station);
                     Stations.Add(station);
 
                 }
@@ -189,61 +189,47 @@ namespace FloKWS
         }
 
 
-        public bool CreateInfo(int id, int snowQuality, int snowQuantity, int wind, int weather, int idUser, int idStation, double longitude, double latitude)
+        public bool CreateInfo(int snowQuality, int snowQuantity, int wind, int weather, int idUser, int idStation, string date, double longitude, double latitude)
         {
             MySqlConnection myconnexion = Global.InitMySqlConnection(Global.DBLogin, Global.DBPassword, Global.DBHost, Global.DBName, Global.Port, false);
             List<string> listColumns = new List<String>();
             List<string> listValue = new List<String>();
 
             listColumns.Add("snow_quality_info");
-            listValue.Add(id.ToString());
-
-            listColumns.Add("snow_quantity_info");
             listValue.Add(snowQuality.ToString());
 
-            listColumns.Add("wind_info");
+            listColumns.Add("snow_quantity_info");
             listValue.Add(snowQuantity.ToString());
 
-            listColumns.Add("weather_info");
+            listColumns.Add("wind_info");
             listValue.Add(wind.ToString());
 
-            listColumns.Add("id_user_user");
+            listColumns.Add("weather_info");
             listValue.Add(weather.ToString());
 
-            listColumns.Add("id_station_station");
+            listColumns.Add("id_user_user");
             listValue.Add(idUser.ToString());
 
-            listColumns.Add("date_info");
+            listColumns.Add("id_station_station");
             listValue.Add(idStation.ToString());
 
+            listColumns.Add("date_info");
+            listValue.Add(date);
+
+            string test = longitude.ToString();
+
             listColumns.Add("longitude_info");
-            listValue.Add(longitude.ToString());
+            listValue.Add(longitude.ToString().Replace(",", "."));
 
             listColumns.Add("latitude_info");
-            listValue.Add(latitude.ToString());
+            listValue.Add(latitude.ToString().Replace(",", "."));
 
-          
 
-            return Global.insert_into_db(myconnexion, "user", listColumns, listValue);
+
+            return Global.insert_into_db(myconnexion, "information", listColumns, listValue);
         }
 
 
-        public bool CreateInfo(string login, string mail, string pwd)
-        {
-            MySqlConnection myconnexion = Global.InitMySqlConnection(Global.DBLogin, Global.DBPassword, Global.DBHost, Global.DBName, Global.Port, false);
-            List<string> listColumns = new List<String>();
-            List<string> listValue = new List<String>();
 
-            listColumns.Add("login_user");
-            listValue.Add(login);
-
-            listColumns.Add("password_user");
-            listValue.Add(pwd);
-
-            listColumns.Add("email_user");
-            listValue.Add(mail);
-
-            return Global.insert_into_db(myconnexion, "user", listColumns, listValue);
-        }
     }
 }

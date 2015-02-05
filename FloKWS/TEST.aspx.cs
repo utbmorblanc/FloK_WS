@@ -20,42 +20,44 @@ namespace FloKWS
         }
 
 
-        public bool CreateInfo(int id, int snowQuality, int snowQuantity, int wind, int weather, int idUser, int idStation, double longitude, double latitude)
+        public bool CreateInfo(int snowQuality, int snowQuantity, int wind, int weather, int idUser, int idStation, string date, double longitude, double latitude)
         {
             MySqlConnection myconnexion = Global.InitMySqlConnection(Global.DBLogin, Global.DBPassword, Global.DBHost, Global.DBName, Global.Port, false);
             List<string> listColumns = new List<String>();
             List<string> listValue = new List<String>();
 
             listColumns.Add("snow_quality_info");
-            listValue.Add(id.ToString());
-
-            listColumns.Add("snow_quantity_info");
             listValue.Add(snowQuality.ToString());
 
-            listColumns.Add("wind_info");
+            listColumns.Add("snow_quantity_info");
             listValue.Add(snowQuantity.ToString());
 
-            listColumns.Add("weather_info");
+            listColumns.Add("wind_info");
             listValue.Add(wind.ToString());
 
-            listColumns.Add("id_user_user");
+            listColumns.Add("weather_info");
             listValue.Add(weather.ToString());
 
-            listColumns.Add("id_station_station");
+            listColumns.Add("id_user_user");
             listValue.Add(idUser.ToString());
 
-            listColumns.Add("date_info");
+            listColumns.Add("id_station_station");
             listValue.Add(idStation.ToString());
 
+            listColumns.Add("date_info");
+            listValue.Add(date);
+
+            string test = longitude.ToString();
+
             listColumns.Add("longitude_info");
-            listValue.Add(longitude.ToString());
+            listValue.Add(longitude.ToString().Replace(",", "."));
 
             listColumns.Add("latitude_info");
-            listValue.Add(latitude.ToString());
+            listValue.Add(latitude.ToString().Replace(",", "."));
 
 
 
-            return Global.insert_into_db(myconnexion, "user", listColumns, listValue);
+            return Global.insert_into_db(myconnexion, "information", listColumns, listValue);
         }
 
         //protected void Button1_Click(object sender, EventArgs e)
@@ -82,9 +84,11 @@ namespace FloKWS
         {
 
             float km = 200;
-            double latitude = 45.642938;
-            double longitude = 6.062307;
-            //bool ok = this.CreateInfo(int id, int snowQuality, int snowQuantity, int wind, int weather, int idUser, int idStation, double longitude, double latitude);
+            double latitude = 48.642938;
+            double longitude = 24.062307;
+            DateTime date = DateTime.Now;
+            string dateSQL = date.Year + "-" + date.Month + "-" + date.Day;
+            bool ok = this.CreateInfo(2, 3, 4, 2, 2, 1, dateSQL, longitude, latitude);
 
 
 
