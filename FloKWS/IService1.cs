@@ -20,8 +20,8 @@ namespace FloKWS
         [OperationContract]
         List<Station> GetAllStations();
 
-        [OperationContract]
-        int GetDistance(double myLatitude, double myLongitude,double stationLatitude, double stationLongitude);
+        //[OperationContract]
+        //int GetDistance(double myLatitude, double myLongitude,double stationLatitude, double stationLongitude);
 
         [OperationContract]
         bool isLoginInDB(string login);
@@ -32,6 +32,9 @@ namespace FloKWS
 
         [OperationContract]
         bool CreateUser(string login, string mail, string pwd);
+
+        [OperationContract]
+        bool CreateInfo(int id, int snowQuality,int snowQuantity, int wind, int weather, int idUser, int idStation, double longitude, double latitude);
     }
 
     // et on défini les classes

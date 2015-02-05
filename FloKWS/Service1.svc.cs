@@ -117,11 +117,11 @@ namespace FloKWS
             return Stations;
         }
 
-        public int GetDistance(double myLatitude, double myLongitude, double stationLatitude, double stationLongitude)
-        {
-            //GeoCoordinate positionDépart
-            return 0;
-        }
+        //public int GetDistance(double myLatitude, double myLongitude, double stationLatitude, double stationLongitude)
+        //{
+        //    //GeoCoordinate positionDépart
+        //    return 0;
+        //}
 
         /// <summary>
         /// retourne true si login existant
@@ -186,6 +186,45 @@ namespace FloKWS
             listValue.Add(mail);
 
             return Global.insert_into_db(myconnexion,"user", listColumns, listValue);
+        }
+
+
+        public bool CreateInfo(int id, int snowQuality, int snowQuantity, int wind, int weather, int idUser, int idStation, double longitude, double latitude)
+        {
+            MySqlConnection myconnexion = Global.InitMySqlConnection(Global.DBLogin, Global.DBPassword, Global.DBHost, Global.DBName, Global.Port, false);
+            List<string> listColumns = new List<String>();
+            List<string> listValue = new List<String>();
+
+            listColumns.Add("snow_quality_info");
+            listValue.Add(id.ToString());
+
+            listColumns.Add("snow_quantity_info");
+            listValue.Add(snowQuality.ToString());
+
+            listColumns.Add("wind_info");
+            listValue.Add(snowQuantity.ToString());
+
+            listColumns.Add("weather_info");
+            listValue.Add(wind.ToString());
+
+            listColumns.Add("id_user_user");
+            listValue.Add(weather.ToString());
+
+            listColumns.Add("id_station_station");
+            listValue.Add(idUser.ToString());
+
+            listColumns.Add("date_info");
+            listValue.Add(idStation.ToString());
+
+            listColumns.Add("longitude_info");
+            listValue.Add(longitude.ToString());
+
+            listColumns.Add("latitude_info");
+            listValue.Add(latitude.ToString());
+
+          
+
+            return Global.insert_into_db(myconnexion, "user", listColumns, listValue);
         }
 
 
