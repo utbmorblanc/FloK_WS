@@ -64,8 +64,9 @@ namespace FloKWS
 
 
         [DataMember]
-        int id_station { get; set; }
+        public int id_station { get; set; }
         [DataMember]
+<<<<<<< HEAD
         int height_station { get; set; }
         [DataMember]
         int km_size_station { get; set; }
@@ -75,11 +76,23 @@ namespace FloKWS
         string name_station { get; set; }
         [DataMember]
         double longitude_station { get; set; }
+=======
+        public int height_station { get; set; }
         [DataMember]
-        double latitude_station { get; set; }
+        public int km_size_station { get; set; }
+        
+        // name + location
+        [DataMember]
+        public string name_station { get; set; }
+        [DataMember]
+        public double longitude_station { get; set; }
+>>>>>>> 030a2c2dc37cc6aa5a39c6d0c42869e86aba28b4
+        [DataMember]
+        public double latitude_station { get; set; }
 
         //adresse
         [DataMember]
+<<<<<<< HEAD
         int address_number_station { get; set; }
         [DataMember]
         string address_street_station { get; set; }
@@ -87,6 +100,15 @@ namespace FloKWS
         int address_cp_station { get; set; }
         [DataMember]
         string addresse_city_station { get; set; }
+=======
+        public int address_number_station { get; set; }
+        [DataMember]
+        public string address_street_station { get; set; }
+        [DataMember]
+        public int address_cp_station { get; set; }
+        [DataMember]
+        public string addresse_city_station { get; set; }
+>>>>>>> 030a2c2dc37cc6aa5a39c6d0c42869e86aba28b4
     }
 
     #endregion
@@ -96,22 +118,22 @@ namespace FloKWS
     public class User
     {
         [DataMember]
-        int id_user { get; set; }
+        public int id_user { get; set; }
         [DataMember]
-        int id_language_language { get; set; }
+        public int id_language_language { get; set; }
 
         [DataMember]
-        string email_user { get; set; }
+        public string email_user { get; set; }
         [DataMember]
-        string login_user { get; set; }
+        public string login_user { get; set; }
         [DataMember]
-        string password_user { get; set; }
+        public string password_user { get; set; }
         [DataMember]
-        double last_longitude_user { get; set; }
+        public double last_longitude_user { get; set; }
         [DataMember]
-        double last_latitude_user { get; set; }
+        public double last_latitude_user { get; set; }
         [DataMember]
-        string last_city_user{ get; set; }
+        public string last_city_user { get; set; }
     }
 
     #endregion
@@ -121,30 +143,30 @@ namespace FloKWS
     public class Alarm
     {
         [DataMember]
-        int id_alarm { get; set; }
+        public int id_alarm { get; set; }
         [DataMember]
-        int id_user_user { get; set; }
+        public int id_user_user { get; set; }
 
         [DataMember]
-        int snow_quality_alarm { get; set; }
+        public int snow_quality_alarm { get; set; }
         [DataMember]
-        int snow_quantity_alarm{ get; set; }
+        public int snow_quantity_alarm { get; set; }
         [DataMember]
-        int wind_alarm { get; set; }
+        public int wind_alarm { get; set; }
         [DataMember]
-        int weather_alarm{ get; set; }
+        public int weather_alarm { get; set; }
         [DataMember]
-        double longitude_alarm { get; set; }
+        public double longitude_alarm { get; set; }
         [DataMember]
-        double latitude_alarm { get; set; }
+        public double latitude_alarm { get; set; }
         [DataMember]
-        int range_alarm { get; set; }
+        public int range_alarm { get; set; }
         [DataMember]
-        string status_alarm { get; set; }
+        public string status_alarm { get; set; }
         [DataMember]
-        int hour_alarm { get; set; }
+        public int hour_alarm { get; set; }
         [DataMember]
-        int minute_alarm { get; set; }
+        public int minute_alarm { get; set; }
         
     }
 
@@ -155,24 +177,24 @@ namespace FloKWS
     public class Information
     {
         [DataMember]
-        int id_information { get; set; }
+        public int id_information { get; set; }
         [DataMember]
-        int id_user_user { get; set; }
+        public int id_user_user { get; set; }
         [DataMember]
-        int id_station_station { get; set; }
+        public int id_station_station { get; set; }
 
         [DataMember]
-        int snow_quality_info { get; set; }
+        public int snow_quality_info { get; set; }
         [DataMember]
-        int snow_quantity_info { get; set; }
+        public int snow_quantity_info { get; set; }
         [DataMember]
-        int wind_info { get; set; }
+        public int wind_info { get; set; }
         [DataMember]
-        int weather_info { get; set; }
+        public int weather_info { get; set; }
         [DataMember]
-        double longitude_info { get; set; }
+        public double longitude_info { get; set; }
         [DataMember]
-        double latitude_info { get; set; }
+        public double latitude_info { get; set; }
     }
 
     #endregion
@@ -182,9 +204,9 @@ namespace FloKWS
     public class Language
     {
         [DataMember]
-        int id_language { get; set; }
+        public int id_language { get; set; }
         [DataMember]
-        string name_language { get; set; }
+        public string name_language { get; set; }
     }
 
     #endregion
@@ -194,11 +216,11 @@ namespace FloKWS
     public class Region
     {
         [DataMember]
-        int id_region { get; set; }
+        public int id_region { get; set; }
         [DataMember]
-        int id_country_country { get; set; }
+        public int id_country_country { get; set; }
         [DataMember]
-        string name_region { get; set; }
+        public string name_region { get; set; }
     }
     #endregion
 
@@ -207,9 +229,9 @@ namespace FloKWS
     public class Country
     {
         [DataMember]
-        int id_country { get; set; }
+        public int id_country { get; set; }
         [DataMember]
-        string name_country { get; set; }
+        public string name_country { get; set; }
     }
     #endregion
 }

@@ -1,4 +1,5 @@
 ﻿using MySql.Data.MySqlClient;
+using System.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -47,7 +48,7 @@ namespace FloKWS
         /// <param name="latitude"></param>
         /// <returns></returns>
         public static double KmToLongitude(float km,double latitude){
-            return (km / (111.320 * Math.Cos(latitude))); 
+            return Math.Abs((km / (111.320 * Math.Cos(latitude)))); 
         }
 
         /// <summary>
@@ -208,7 +209,7 @@ namespace FloKWS
             return returnValue;
         }
 
-        public static MySqlDataReader selectDataReader(MySqlConnection myConnection, string query)
+        public static DataTable selectDataReader(MySqlConnection myConnection, string query)
         {
             myConnection.Open();
 
@@ -218,7 +219,10 @@ namespace FloKWS
                 cmd.CommandText = query;
                 cmd.CommandTimeout = 600;
                 MySqlDataReader reader = cmd.ExecuteReader();
-                return reader;
+
+                DataTable schemaTable = reader.GetSchemaTable();
+
+                return schemaTable;
             }
             catch (Exception ex)
             {
